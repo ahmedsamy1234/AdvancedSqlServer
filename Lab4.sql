@@ -21,14 +21,14 @@ as
 -- elperfromance fef zema el-llah
 
 ------------------------------------
---4Create a view that will display Instructor Name, Department Name for the ‘SD’ or ‘Java’ Department  
+--3Create a view that will display Instructor Name, Department Name for the ‘SD’ or ‘Java’ Department  
 Create View Instructor_Dept
 as 
 Select Instructor.Ins_Name,Department.Dept_Name
 from Instructor,Department
 where Instructor.Dept_Id=Department.Dept_Id and Department.Dept_Name='SD' and Department.Dept_Name='Java'
 ---------------------------------------------
--- 5-Create a view “V1” that displays student data for student who lives in Alex or Cairo.  
+-- 4-Create a view “V1” that displays student data for student who lives in Alex or Cairo.  
 
 alter  View V1 (stid,Fname,Lname,adder,Age,deptid,st_super)
 as 
@@ -37,7 +37,7 @@ from Student
 where Student.St_Address='Alex' or Student.St_Address='Cairo'
 -----------------------------------------------
 select * from V1
---Create a view that will display the project name and 
+--5-Create a view that will display the project name and 
 --the number of employees work on it. “Use SD database” 
 alter View EmpNum(projName,NumOfEmp)
 as 
@@ -89,7 +89,7 @@ when Not matched Then
 
 -----------------------------------------------------
 
- -----Create view named  “v_without_budget” that will 
+ --2-Create view named  “v_without_budget” that will 
  --			display all the projects data without budget 
  Create View v_without_budget 
  as 
@@ -98,7 +98,7 @@ when Not matched Then
  --------------------------------------------------------
  
 
---Create view named  “v_count “ that will display the project name and the # of jobs in it 
+--3-Create view named  “v_count “ that will display the project name and the # of jobs in it 
 Create View  v_count (projectName,NameOfJobs)
 
 as 
@@ -108,7 +108,7 @@ from Company.Project as p , Works_on  as W
 where p.ProjectNO =W.projectNo
 group by p.ProjectName
  --------------------------------------------------------
--- Create view named ” v_project_p2” that will display the emp#  for the project# ‘p2’ 
+-- 4-Create view named ” v_project_p2” that will display the emp#  for the project# ‘p2’ 
 		--use the previously created view  “v_clerk” 
 Create view v_cleerk_p2
 as 
@@ -116,7 +116,7 @@ Select *
 from v_cleerk
 where v_cleerk.projectNo='p2'
  -----------------------------
- --modifey the view named  “v_without_budget”  to display all DATA in project p1 and p2  
+ ---5modifey the view named  “v_without_budget”  to display all DATA in project p1 and p2  
 
  alter   View v_without_budget 
  as 
@@ -124,13 +124,13 @@ where v_cleerk.projectNo='p2'
  from Company.Project as P
  where  P.ProjectNO in ('P1','P2')
 ---------------------------------------
---Delete the views  “v_ clerk” and “v_count” 
+--6-Delete the views  “v_ clerk” and “v_count” 
 
 drop view v_count
 drop view v_cleerk
 -------------------------------------------------
 
---Create view that will display the emp# and emp lastname who works on dept# is ‘d2’ 
+--7-Create view that will display the emp# and emp lastname who works on dept# is ‘d2’ 
 
 Create  View EmployeesInDeptD2 
  as 
@@ -140,7 +140,7 @@ Create  View EmployeesInDeptD2
  ------------------
 
 
---Display the employee  lastname that contains letter “J” 
+--8-Display the employee  lastname that contains letter “J” 
 
 Create View EmployeesInDeptD2andStartWithLetterJ
 as 
@@ -149,7 +149,7 @@ as
  where  EmployeesInDeptD2.EmpLname like 'j%'
 
 -----------------------------------------------------------------
---Create view named “v_dept” that will display the department# and department name 
+--9-Create view named “v_dept” that will display the department# and department name 
 
 Create View V_dept
 as 
@@ -158,12 +158,12 @@ from Company.Department as dept
 where dept.DeptNo='d4' and dept.DeptName='Development'
 ------------------------------------------------------------------
 
---using the previous view try enter new department data where dept# is ’d4’ and dept name is ‘Development’ 
+--10using the previous view try enter new department data where dept# is ’d4’ and dept name is ‘Development’ 
 select * from V_dept
 INSERT INTO V_dept (DeptNo,DeptName)
 VALUES ('d4','Devel');
 ---------------------------------------------------------
---Create view name “v_2006_check” that will display employee#, 
+--11-Create view name “v_2006_check” that will display employee#, 
 --the project #where he works and the date of joining the project which
 --must be from the first of January and the last of December 2006.this view will be used to insert data so make sure that the coming new data must match the condition
 Create View v_2006_check
